@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    --color-orangegrey: #D1B9B4;
+    --color-lightorangegrey: #F8F5F4;
+    --color-brightorange: #EC6D54;
+}
+
+
+/* Universal Box Sizing with Inheritance */
+/* https://css-tricks.com/box-sizing/ */
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+/* Remove default padding and margin */
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    line-height: 1.6;
+}
+
+
+h1 {
+    text-align: center;
+    margin: 16px 0;
+}
+
+h1, 
+a,
+button {
+    font-family: 'Noto Serif', serif;
+}
+
+p,
+li,
+input {
+    font-family: 'Work Sans', sans-serif;
+}
+
+input {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+a {
+    text-decoration-color: var(--color-brightorange);
+    color: black;
+    font-weight: 700;
+    transition: all 0.3s linear;
+}
+
+a:hover {
+    text-decoration-color: var(--color-lightorangegrey);
+    background-color: var(--color-brightorange);
+}
+
+.footer p {
+    font-size: 0.75rem;
+}
+
+/*****************PAGE CONTENT******************/
+.page-content {
+    min-height: 100vh;
+}
+
+.page-content.flex-column {
+    justify-content: space-between;
+}
+
+/********************NAVBAR*********************/
+.navbar {
+    width: 100%;
+}
+
+.nav-link {
+    display: block;
+    padding: 16px 0 0 0;
+}
+
+.nav-link svg {
+    width: 100px;
+    fill: black;
+    transition: all 0.3s linear;
+}
+
+.nav-link:hover {
+    background-color: white;
+}
+
+.nav-link:hover svg{
+    fill: var(--color-brightorange);
+}
+
+/******************MAIN CONTENT*****************/
+.main-content {
+    width: 100%;
+    flex: 1 1 auto;
+}
+
+.main-content .container {
+    height: 100%;
+    flex-grow: 1;
+    width: 800px;
+}
+
+.recipe-form {
+    height: 100%;
+    width: 100%;
+}
+
+.recipe-form ul {
+    width: 100%;
+    list-style-type: none;
+}
+
+.recipe-form li {
+    width: 100%;
+    /* border: 1px red solid; */
+    /* width: 600px; */
+}
+
+/* .recipe-form li.btn-container {
+    width: 600px;
+    border: 1px red solid;
+} */
+
+.recipe-form label {
+    display: none;
+}
+
+.recipe-form input {
+    /* width: 600px; */
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+    width: 100%;
+}
+
+.form-content {
+    height: 150px;
+}
+
+.hide {
+    display: none;
+}
+
+.loading {
+    height: 150px;
+    text-align: center;
+    line-height: 75px;
+    color: var(--color-brightorange);
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 1.5px;
+    animation: stretch 1s ease-in-out infinite;
+}
+
+@keyframes stretch {
+    0% {
+        letter-spacing: 1.5px;
+    }
+    50% {
+        letter-spacing: 3px;
+    }
+    100% {
+        letter-spacing: 1.5px;
+    }
+}
+
+.info .container {
+    align-items: left;
+    width:max-content;
+}
+
+
+.list-card.ingredients {
+    list-style-image: url('/static/images/mushroom-svgrepo-com.svg');
+}
+
+.list-card.instructions {
+    list-style-image: url('/static/images/kitchen-pack-steam-svgrepo-com.svg');
+}
+
+
+/********************FOOTER*********************/
+.footer {
+    height: 50px;
+    width: 100%;
+}
+
+
+/******************UTILITIES********************/
+.btn {
+    display: block;
+    cursor: pointer;
+    width: 400px;
+    background-color: black;
+    border: none;
+    outline: none;
+    margin: 8px auto;
+    /* margin-left: auto;
+    margin-right: auto; */
+    padding: 16px 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+    transition: all 0.3s linear;
+}
+
+.btn:hover {
+    color: black;
+    background-color: var(--color-brightorange);
+    transform: scale(0.99);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0px auto;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%; 
+}
+
+.card {
+    background-color: white;
+    border: 3px solid var(--color-brightorange);
+    border-style: double;
+    border-radius: 3px;
+    width: 700px;
+    margin: 16px auto;
+    padding: 16px 0;
+}
+
+.card h2 {
+    width: 600px;
+    border-bottom: 3px solid black;
+    border-bottom-style:double;
+    text-align: center;
+    margin-top: -16px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8px 0;
+    background-color: white;
+}
+
+
+.list-card ul {
+    width: 600px;
+    margin: 0 auto;
+    padding-top: 16px;
+}
+
+.large-img {
+    height: 200px;
+    margin: 8px;
+}
+
+
+/* 
+Icon references 
+https://www.svgrepo.com/collection/food-and-drinks-2/
+https://www.svgrepo.com/collection/restaurant-13/
+https://www.svgrepo.com/collection/home-stuff-16/
+*/
