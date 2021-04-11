@@ -2,11 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
-    --color-orangegrey: #D1B9B4;
     --color-lightorangegrey: #F8F5F4;
     --color-brightorange: #EC6D54;
 }
-
 
 /* Universal Box Sizing with Inheritance */
 /* https://css-tricks.com/box-sizing/ */
@@ -127,11 +125,6 @@ a:hover {
     /* width: 600px; */
 }
 
-/* .recipe-form li.btn-container {
-    width: 600px;
-    border: 1px red solid;
-} */
-
 .recipe-form label {
     display: none;
 }
@@ -180,7 +173,6 @@ a:hover {
     width:max-content;
 }
 
-
 .list-card.ingredients {
     list-style-image: url('/static/images/mushroom-svgrepo-com.svg');
 }
@@ -189,13 +181,11 @@ a:hover {
     list-style-image: url('/static/images/kitchen-pack-steam-svgrepo-com.svg');
 }
 
-
 /********************FOOTER*********************/
 .footer {
     height: 50px;
     width: 100%;
 }
-
 
 /******************UTILITIES********************/
 .btn {
@@ -263,7 +253,6 @@ a:hover {
     background-color: white;
 }
 
-
 .list-card ul {
     width: 600px;
     margin: 0 auto;
@@ -274,7 +263,6 @@ a:hover {
     height: 200px;
     margin: 8px;
 }
-
 
 /* 
 Icon references 

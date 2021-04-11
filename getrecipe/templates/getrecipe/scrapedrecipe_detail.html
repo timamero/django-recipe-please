@@ -12,7 +12,6 @@
             </div>    
         </div>
         
-
         <div class="ingredients card list-card">
             <h2>Ingredients</h2>
             <ul>
@@ -36,14 +35,11 @@
             <p><a href="{% url 'index' %}">Get another recipe</a></p>
         </div>
         
-    
     {% else %}
         <h1>Recipe not found</h1>
         {% load static %}
         <img class="large-img" src="{% static '/images/cutlery-cooking-svgrepo-com.svg' %}" alt="Cutlery in form of x">
         <p><a href="{% url 'index' %}">Get another recipe</a></p>
     {% endif %}
-
-
 
 {% endblock content %}
