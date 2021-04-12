@@ -43,6 +43,10 @@ input {
     font-family: 'Work Sans', sans-serif;
 }
 
+p {
+    text-align: center;
+}
+
 input {
     font-size: 1.2rem;
     text-align: center;
@@ -121,8 +125,6 @@ a:hover {
 
 .recipe-form li {
     width: 100%;
-    /* border: 1px red solid; */
-    /* width: 600px; */
 }
 
 .recipe-form label {
@@ -130,7 +132,6 @@ a:hover {
 }
 
 .recipe-form input {
-    /* width: 600px; */
     border: none;
     outline: none;
     border-bottom: 2px solid black;
@@ -169,8 +170,7 @@ a:hover {
 }
 
 .info .container {
-    align-items: left;
-    width:max-content;
+    width: max-content;
 }
 
 .list-card.ingredients {
@@ -196,8 +196,6 @@ a:hover {
     border: none;
     outline: none;
     margin: 8px auto;
-    /* margin-left: auto;
-    margin-right: auto; */
     padding: 16px 0;
     font-size: 1.25rem;
     font-weight: 700;
@@ -263,6 +261,42 @@ a:hover {
     height: 200px;
     margin: 8px;
 }
+
+/****************MEDIA QUERIES******************/
+@media screen and (max-width: 850px) {
+    .main-content .container {
+        width: 90%;
+    }
+
+    .info .container {
+        width: 100%;
+    }
+
+    .btn {
+        width: 200px;
+    }
+
+    .container {
+        max-width: 100%;
+    }
+
+    .card {
+        width: 100%;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+
+    .card h2 {
+        width: 90%;
+    }
+
+    .list-card ul {
+        width: 90%;
+        margin-left: 24px;
+        margin-right: 24px;
+    }
+}
+
 
 /* 
 Icon references 
