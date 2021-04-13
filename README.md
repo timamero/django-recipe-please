@@ -15,8 +15,16 @@ Install Dependencies
 ```
 pip install -r requirements.txt
 ```
+Note: This project was configured with postgresql. Update database settings if you will not be using postgresql
+Update settings.py Variables
+```
+SECRET_KEY 
+DATABASES['default']['Name']
+DATABASES['default']['User']
+DATABASES['default']['Password']
+```
 
-Run Database Migrations
+Run Database Migrations 
 ```
 py manage.py makemigrations
 py manage.py migrate
