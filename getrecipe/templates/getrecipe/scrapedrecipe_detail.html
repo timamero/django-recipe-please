@@ -4,15 +4,13 @@
     {% if scrapedrecipe.title and scrapedrecipe.ingredients != list %}
         <h1>{{ scrapedrecipe.title }}</h1>
 
-        <div class="info flex-column">
-            <div class="container">
-                <p><strong>Servings: </strong> {{ scrapedrecipe.servings }}</p>
-                <p><strong>Prep Time: </strong> {{ scrapedrecipe.prep_time }}</p>
-                <p><strong>Cook Time: </strong> {{ scrapedrecipe.cook_time }}</p>
-            </div>    
+        <div class="card">
+            <p><strong>Servings: </strong> {{ scrapedrecipe.servings }}</p>
+            <p><strong>Prep Time: </strong> {{ scrapedrecipe.prep_time }}</p>
+            <p><strong>Cook Time: </strong> {{ scrapedrecipe.cook_time }}</p>
         </div>
         
-        <div class="ingredients card list-card">
+        <div class="ingredients card list-card flex-column">
             <h2>Ingredients</h2>
             <ul>
             {% for ingredient in scrapedrecipe.ingredients %}
@@ -21,16 +19,16 @@
             </ul>
         </div>
 
-        <div class="instructions card list-card">
+        <div class="instructions card list-card flex-column">
             <h2>Instructions</h2>
-            <ul>
+            <ol>
             {% for instructions in scrapedrecipe.instructions %}
                 <li>{{ instructions }}</li>
             {% endfor %}
-            </ul>
+            </ol>
         </div>
 
-        <div class="flex-column">
+        <div class="card">
             <p><a href="{{ scrapedrecipe.url }}">Go to recipe website</a></p>
             <p><a href="{% url 'index' %}">Get another recipe</a></p>
         </div>

@@ -1,63 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block title %}<title>Recipe, Please!</title>{% endblock title %}
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
+    <link
+      rel="shortcut icon"
+      type="image/svg"
+      href="{% static 'images/favicon-cooking-food-garlic-svgrepo-com.svg' %}"
+    />
+    {% block title %}
+    <title>Recipe, Please!</title>
+    {% endblock title %} {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body>
     <div class="page-content flex-column">
-        <div class="navbar">
-            <div class="container flex">
-                <nav>
-                    {% load static %}
-                    <a href="{% url 'index' %}" class="nav-link">
-                        <svg style="enable-background:new 0 0 512 512" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><metadata><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/><dc:title/></cc:Work></rdf:RDF></metadata>
-                            <title>Recipe please logo</title>
-                            <g>
-                                <g>
-                                    <path d="m352.73 323.45-25.602-8.747-25.603-8.746c9.249-29.269 11.724-56.206 7.424-80.813l7e-3 -4e-3c-3.414-0.075-6.874-0.661-10.278-1.824-17.814-6.086-27.323-25.462-21.237-43.276 6.086-17.815 25.462-27.323 43.276-21.237 3.453 1.18 6.589 2.863 9.365 4.933 2.397-3.27 5.18-6.181 8.253-8.704-20.444-16.701-46.033-27.324-73.991-29.099 1.033 4.501 1.596 9.178 1.596 13.989 0 33.944-27.183 61.64-60.92 62.512 1.114 5.199 1.739 10.574 1.805 16.077 0.272 22.245-8.26 43.135-24.022 58.821-13.451 13.388-30.675 21.485-49.267 23.335 18.271 49.943 66.271 85.687 122.46 85.687 68.688 0 125.13-53.407 130-120.88-13.641 15.435-24.734 34.755-33.27 57.971zm-145.42 16.032c-9.22 0-16.696-7.475-16.696-16.696s7.475-16.696 16.696-16.696c9.22 0 16.696 7.475 16.696 16.696s-7.475 16.696-16.696 16.696zm33.392 27.826c-9.22 0-16.696-7.475-16.696-16.696s7.475-16.696 16.696-16.696c9.22 0 16.696 7.475 16.696 16.696s-7.476 16.696-16.696 16.696zm8.347-44.521c-9.22 0-16.696-7.475-16.696-16.696s7.475-16.696 16.696-16.696c9.22 0 16.696 7.475 16.696 16.696s-7.475 16.696-16.696 16.696z"/>
-                                </g>
-                            </g>
-                            <g>
-                                <g>
-                                    <path d="m256 0c-141.38 0-256 114.62-256 256s114.62 256 256 256 256-114.62 256-256-114.62-256-256-256zm163.64 261.51c-2.917 87.743-75.195 158.23-163.64 158.23-76.457 0-140.83-52.678-158.76-123.64-10.839-3.989-20.808-10.3-29.26-18.66-15.041-14.878-23.643-34.635-24.224-55.629-0.094-3.411 0.024-6.853 0.353-10.231 0.78-8.014 4.679-15.2 10.98-20.235 6.327-5.057 14.592-7.375 22.685-6.355 0.672 0.086 1.367 0.117 2.054 0.097 6.613-0.195 12.236-5.728 12.528-12.336 0.027-0.598 0.013-1.199-0.039-1.781-0.728-8.162 1.892-16.383 7.189-22.558 5.248-6.118 12.552-9.768 20.565-10.279 3.088-0.196 6.217-0.217 9.31-0.063 3.903 0.194 7.731 0.67 11.469 1.395 0.248-34.282 28.203-62.097 62.542-62.097 15.648 0 29.96 5.789 40.941 15.32 3.857-0.273 7.748-0.421 11.672-0.421 47.265 0 89.908 20.138 119.82 52.276 2.914 0.423 5.83 1.11 8.717 2.096 20.44 6.983 33.145 26.337 32.617 46.846 3.462 0.061 6.973 0.648 10.426 1.828 17.815 6.086 27.323 25.461 21.237 43.276-4.487 13.136-16.201 21.746-29.186 22.928z"/>
-                                </g>
-                            </g>
-                        </svg>
-                    </a>
-                </nav>
-            </div>    
+      <div class="navbar">
+        <div class="container flex">
+          <nav>
+            {% load static %}
+            <a href="{% url 'index' %}" class="nav-link">
+              <svg
+                style="enable-background: new 0 0 512 512"
+                version="1.1"
+                viewBox="0 0 512 512"
+                xml:space="preserve"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:cc="http://creativecommons.org/ns#"
+                xmlns:dc="http://purl.org/dc/elements/1.1/"
+                xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+              >
+                <metadata>
+                  <rdf:RDF
+                    ><cc:Work rdf:about=""
+                      ><dc:format>image/svg+xml</dc:format
+                      ><dc:type
+                        rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work
+                  ></rdf:RDF>
+                </metadata>
+                <title>Recipe please logo</title>
+                <g>
+                  <g>
+                    <path
+                      d="m352.73 323.45-25.602-8.747-25.603-8.746c9.249-29.269 11.724-56.206 7.424-80.813l7e-3 -4e-3c-3.414-0.075-6.874-0.661-10.278-1.824-17.814-6.086-27.323-25.462-21.237-43.276 6.086-17.815 25.462-27.323 43.276-21.237 3.453 1.18 6.589 2.863 9.365 4.933 2.397-3.27 5.18-6.181 8.253-8.704-20.444-16.701-46.033-27.324-73.991-29.099 1.033 4.501 1.596 9.178 1.596 13.989 0 33.944-27.183 61.64-60.92 62.512 1.114 5.199 1.739 10.574 1.805 16.077 0.272 22.245-8.26 43.135-24.022 58.821-13.451 13.388-30.675 21.485-49.267 23.335 18.271 49.943 66.271 85.687 122.46 85.687 68.688 0 125.13-53.407 130-120.88-13.641 15.435-24.734 34.755-33.27 57.971zm-145.42 16.032c-9.22 0-16.696-7.475-16.696-16.696s7.475-16.696 16.696-16.696c9.22 0 16.696 7.475 16.696 16.696s-7.475 16.696-16.696 16.696zm33.392 27.826c-9.22 0-16.696-7.475-16.696-16.696s7.475-16.696 16.696-16.696c9.22 0 16.696 7.475 16.696 16.696s-7.476 16.696-16.696 16.696zm8.347-44.521c-9.22 0-16.696-7.475-16.696-16.696s7.475-16.696 16.696-16.696c9.22 0 16.696 7.475 16.696 16.696s-7.475 16.696-16.696 16.696z"
+                    />
+                  </g>
+                </g>
+                <g>
+                  <g>
+                    <path
+                      d="m256 0c-141.38 0-256 114.62-256 256s114.62 256 256 256 256-114.62 256-256-114.62-256-256-256zm163.64 261.51c-2.917 87.743-75.195 158.23-163.64 158.23-76.457 0-140.83-52.678-158.76-123.64-10.839-3.989-20.808-10.3-29.26-18.66-15.041-14.878-23.643-34.635-24.224-55.629-0.094-3.411 0.024-6.853 0.353-10.231 0.78-8.014 4.679-15.2 10.98-20.235 6.327-5.057 14.592-7.375 22.685-6.355 0.672 0.086 1.367 0.117 2.054 0.097 6.613-0.195 12.236-5.728 12.528-12.336 0.027-0.598 0.013-1.199-0.039-1.781-0.728-8.162 1.892-16.383 7.189-22.558 5.248-6.118 12.552-9.768 20.565-10.279 3.088-0.196 6.217-0.217 9.31-0.063 3.903 0.194 7.731 0.67 11.469 1.395 0.248-34.282 28.203-62.097 62.542-62.097 15.648 0 29.96 5.789 40.941 15.32 3.857-0.273 7.748-0.421 11.672-0.421 47.265 0 89.908 20.138 119.82 52.276 2.914 0.423 5.83 1.11 8.717 2.096 20.44 6.983 33.145 26.337 32.617 46.846 3.462 0.061 6.973 0.648 10.426 1.828 17.815 6.086 27.323 25.461 21.237 43.276-4.487 13.136-16.201 21.746-29.186 22.928z"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </a>
+          </nav>
         </div>
+      </div>
 
-        <div class="main-content flex-column">
-            <main class="container flex-column">
-                {% block content %}{% endblock content %}
-            </main>
+      <div class="main-content flex-column">
+        <main class="container flex-column--start">
+          {% block content %}{% endblock content %}
+        </main>
+      </div>
+
+      <div class="footer">
+        <div class="container flex">
+          <footer>
+            <p>
+              This is website was create by
+              <a href="https://fbcamero.com" target="_blank">Fatima Camero</a>.
+            </p>
+            <p>Recipe, Please! &#169;2024</p>
+          </footer>
         </div>
-        
-        <div class="footer">
-            <div class="container flex">
-            <footer>
-                <p>This is a demo website.</p>
-                <p>Recipe, Please! &#169;2021</p>
-            </footer> 
-            </div>
-        </div>
+      </div>
     </div>
-    
+
     <script>
-    const loadingContent = document.querySelector('.loading');
-    const formContent = document.querySelector('.form-content');
-    function loading() {
+      const loadingContent = document.querySelector('.loading');
+      const formContent = document.querySelector('.form-content');
+      const getRecipeForm = document.querySelector('#get-recipe-form');
+
+      function loading() {
+        const formText = getRecipeForm.querySelector('.large-text');
         formContent.classList.add('hide');
         loadingContent.classList.toggle('hide');
-    }
+        getRecipeForm.classList.toggle('card');
+        formText.classList.toggle('hide');
+      }
     </script>
-         
-</body>
+  </body>
 </html>

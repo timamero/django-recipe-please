@@ -1,23 +1,27 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block content %}
+<h1 class="landing-title">
+  Recipe, <span style="display: block">Please!</span>
+</h1>
 
-{% block content %}
-<h1>Recipe, Please!</h1>
-<p>Enter the url of the website with the recipe</p>
+<div class="flex-column">
+  <div id="get-recipe-form" class="card card--large-padding">
+    <p class="large-text">Enter the url of the website with the recipe</p>
 
-<form onsubmit="loading()" action="" method="post" class="recipe-form">
-    <div class="loading hide">
-    <p>Loading recipe...</p>
-    </div>
-    {% csrf_token %}
-    <div class="form-content">
-    <ul class="flex-column">
-        {{ form.as_ul }}
-        <li>
+    <form onsubmit="loading()" action="" method="post" class="recipe-form">
+      <div class="loading hide">
+        <p>Loading recipe...</p>
+      </div>
+      {% csrf_token %}
+      <div class="form-content">
+        <ul class="flex-column">
+          {{ form.as_ul }}
+          <li>
             <button class="btn" type="submit">Get Recipe</button>
-        </li>
-    </ul>    
-    </div>
-</form>
-
+          </li>
+        </ul>
+      </div>
+    </form>
+  </div>
+</div>
 
 {% endblock content %}
