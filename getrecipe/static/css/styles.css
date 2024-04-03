@@ -52,6 +52,7 @@ a {
     text-decoration-color: var(--color-brightorange);
     color: black;
     font-weight: 700;
+    font-size: 1.75rem;
     transition: all 0.3s linear;
 }
 
@@ -60,7 +61,7 @@ a:hover {
     background-color: var(--color-brightorange);
 }
 
-.footer p {
+.footer a {
     font-size: 0.75rem;
 }
 
@@ -175,12 +176,12 @@ a:hover {
 
 .list-card.ingredients {
     list-style-image: url('/static/images/cooking-food-garlic-svgrepo-com.svg');
-    /* list-style-image: url('/static/images/mushroom-svgrepo-com.svg'); */
 }
 
 ol li::marker {
     font-size: 2.5rem;
     font-weight: 900;
+    line-height: 0px;
 }
 
 /********************FOOTER*********************/
@@ -278,7 +279,7 @@ ol li::marker {
 }
 
 .list-card li {
-    margin-bottom: 8px;
+    margin-bottom: 16px;
 }
 
 .large-img {
@@ -329,6 +330,10 @@ ol li::marker {
 }
 
 @media screen and (max-width: 520px) {
+    a {
+        font-size: 1rem;
+    }
+
     .landing-title {
         font-size: 4rem;
     }
@@ -340,7 +345,7 @@ ol li::marker {
     .card h2 {
         font-size: 2.5rem;
         padding-bottom: 16px;
-        letter-spacing: -0.25rem;
+        letter-spacing: -0.175rem;
     }
 }
 
