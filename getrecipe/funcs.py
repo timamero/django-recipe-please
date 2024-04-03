@@ -37,6 +37,8 @@ def get_ingredients(soup):
         # If container has li tags then return li_tags; if li tags not found, search next container
         while len(li_tags) == 0:
             container = container.find_next(['div', 'ul'], class_=re.compile(r'ingredient|ingred'), recursive=False)
+            if container is None:
+                return None
             li_tags = container.select('li')
         return li_tags
     
