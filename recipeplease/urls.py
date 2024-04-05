@@ -24,7 +24,7 @@ urlpatterns = [
 
 urlpatterns += [
     path('getrecipe/', include('getrecipe.urls')),
-    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('favicon/favicon.ico')))
+    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('favicon.ico')))
     # path('', include('getrecipe.urls'))
 ]
 
