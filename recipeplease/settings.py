@@ -12,18 +12,20 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import  os
 
-# from .secrets import *
+from .secrets import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = MY_SECRET_KEY
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = MY_SECRET_KEY
+# SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = DEBUG_
@@ -91,7 +93,7 @@ WSGI_APPLICATION = 'recipeplease.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        'NAME': BASE_DIR / "db.sqlite3",
+        'NAME': PROJECT_ROOT / "db.sqlite3",
     }
 }
 
@@ -139,7 +141,7 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'getrecipe/static'),
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'getrecipe/staticfiles')
