@@ -132,5 +132,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Production Settings
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
