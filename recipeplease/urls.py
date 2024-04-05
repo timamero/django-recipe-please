@@ -23,9 +23,9 @@ urlpatterns = [
 ]
 
 urlpatterns += [
+    path('', include('getrecipe.urls')),
     path('getrecipe/', include('getrecipe.urls')),
     path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('favicon.ico')))
-    # path('', include('getrecipe.urls'))
 ]
 
 # Use static() to add url mapping to serve static files during development (only)
