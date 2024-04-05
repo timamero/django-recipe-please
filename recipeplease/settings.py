@@ -31,7 +31,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # DEBUG = DEBUG_
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'https://recipeplease-v2-b82eced00232.herokuapp.com/']
 
 
 # Application definition
