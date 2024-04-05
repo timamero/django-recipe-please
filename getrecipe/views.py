@@ -39,7 +39,7 @@ def index(request):
     }
 
     # Clean up database (better to use a task queue or worker process, but will do it this way for now)
-    # ScrapedRecipe.objects.all().delete()
+    ScrapedRecipe.objects.all().delete()
 
     return render(request, 'index.html', context=context)
 
