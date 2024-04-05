@@ -21,8 +21,8 @@ urlpatterns = [
 ]
 
 urlpatterns += [
-    # path('getrecipe/', include('getrecipe.urls'))
-    path('/', include('getrecipe.urls'))
+    path('getrecipe/', include('getrecipe.urls'))
+    # path('', include('getrecipe.urls'))
 ]
 
 # Use static() to add url mapping to serve static files during development (only)
