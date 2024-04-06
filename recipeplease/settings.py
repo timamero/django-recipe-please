@@ -145,4 +145,5 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'getrecipe/static'),
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'getrecipe/staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'getrecipe/staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'getrecipe/static')
