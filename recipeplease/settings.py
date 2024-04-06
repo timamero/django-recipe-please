@@ -81,16 +81,7 @@ WSGI_APPLICATION = 'recipeplease.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': DB_NAME,
-#         'USER': DB_USER,
-#         'PASSWORD': DB_PW,
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -136,7 +127,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATIC_URL = '/staticfiles/'
 
 # Production Settings
 SESSION_COOKIE_SECURE = True
@@ -146,6 +136,4 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'getrecipe/static'),
 )
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_ROOT = os.path.join(BASE_DIR, 'getrecipe', 'staticfiles')
-# STATIC_ROOT = os.path.join(BASE_DIR, 'getrecipe/static')
