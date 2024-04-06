@@ -143,6 +143,7 @@ CSRF_COOKIE_SECURE = True
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'getrecipe/static'),
+    os.path.join(BASE_DIR, 'staticfiles'),
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
