@@ -1,4 +1,5 @@
 venv/
+update-venv/
 secrets.py
 install-notes.txt
 **/__pycache__
