@@ -8,7 +8,7 @@
     <link
       rel="shortcut icon"
       type="image/svg"
-      href="{% static 'favicon.ico' %}"
+      href="{% static '/favicon.ico' %}"
     />
     {% block title %}
     <title>Recipe, Please!</title>
@@ -22,6 +22,7 @@
           <nav>
             {% load static %}
             <a href="{% url 'index' %}" class="nav-link">
+              {% comment %}
               <svg
                 style="enable-background: new 0 0 512 512"
                 version="1.1"
@@ -56,6 +57,7 @@
                   </g>
                 </g>
               </svg>
+              {% endcomment %}
             </a>
           </nav>
         </div>
