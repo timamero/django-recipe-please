@@ -11,8 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 from pathlib import Path
 import  os
-# !!!! ISSUE: STYLES NOT LOADING./
-from .secrets import * # dev
+# from .secrets import * # dev
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,15 +23,15 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = MY_SECRET_KEY # dev
-# SECRET_KEY = os.environ['SECRET_KEY']
+# SECRET_KEY = MY_SECRET_KEY # dev
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = DEBUG_
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] # dev
-# ALLOWED_HOSTS = ['https://recipeplease-v2-b82eced00232.herokuapp.com/', 'recipeplease-v2-b82eced00232.herokuapp.com']
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] # dev
+ALLOWED_HOSTS = ['https://recipeplease-v2-b82eced00232.herokuapp.com/', 'recipeplease-v2-b82eced00232.herokuapp.com']
 
 # Application definition
 
@@ -54,7 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'recipeplease.urls'
@@ -133,9 +132,9 @@ STATIC_URL = '/static/'
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, 'getrecipe/static'),
-# )
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'getrecipe/static'),
+)
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'getrecipe', 'staticfiles')
 # STATIC_ROOT = os.path.join(BASE_DIR, 'getrecipe/static') # dev
