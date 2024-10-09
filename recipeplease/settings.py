@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 from pathlib import Path
 import  os
-# from .secrets import * # dev
+from .secrets import * # dev
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,15 +23,15 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = MY_SECRET_KEY # dev
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = MY_SECRET_KEY # dev
+# SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = DEBUG_
 DEBUG = False
 
-# ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] # dev
-ALLOWED_HOSTS = ['https://recipeplease-v2-b82eced00232.herokuapp.com/', 'recipeplease-v2-b82eced00232.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] # dev
+# ALLOWED_HOSTS = ['https://recipeplease-v2-b82eced00232.herokuapp.com/', 'recipeplease-v2-b82eced00232.herokuapp.com']
 
 # Application definition
 
@@ -83,8 +83,12 @@ WSGI_APPLICATION = 'recipeplease.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        'NAME': PROJECT_ROOT / "db.sqlite3",
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PW,
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -136,5 +140,5 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'getrecipe/static'),
 )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'getrecipe', 'staticfiles')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'getrecipe', 'staticfiles')
 # STATIC_ROOT = os.path.join(BASE_DIR, 'getrecipe/static') # dev
