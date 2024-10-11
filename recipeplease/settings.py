@@ -16,7 +16,7 @@ from .secrets import * # dev
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 # BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
+# PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,8 +27,8 @@ SECRET_KEY = MY_SECRET_KEY # dev
 # SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = DEBUG_
-DEBUG = False
+DEBUG = DEBUG_
+# DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] # dev
 # ALLOWED_HOSTS = ['https://recipeplease-v2-b82eced00232.herokuapp.com/', 'recipeplease-v2-b82eced00232.herokuapp.com']
@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'getrecipe',
 ]
-
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'getrecipe/static'),
+)
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -131,6 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_URL = 'static/'
 
 # Production Settings
 SESSION_COOKIE_SECURE = True
