@@ -1,6 +1,8 @@
 venv/
 update-venv/
 secrets.py
+.env
+.*env
 install-notes.txt
 **/__pycache__
 
