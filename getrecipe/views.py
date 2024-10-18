@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
@@ -64,7 +64,20 @@ def index(request):
 # https://www.tasteofhome.com/recipes/the-ultimate-chicken-noodle-soup/
 # https://mykoreankitchen.com/easy-fried-rice/'
 
-class RecipeDataDetailView(generic.DetailView):
-    model = ScrapedRecipe
+def recipe_data_detail_view(request, recipe_id):
+    # cache_key = f'scraped_recipe_{recipe_id}'
 
+    # Try to get the recipe from the cache
+    # recipe = cache.get(cache_key)
+    recipe = cache.get(recipe_id)
+    # model = ScrapedRecipe
+
+    if not recipe:
+        # If it's not in the cache, retrieve it from the database
+        recipe = get_object_or_404(ScrapedRecipeCache, id=recipe_id)
+        
+        # Store the recipe in the cache
+        cache.set(recipe_id, recipe, timeout=300)  # Cache it for 5 minutes
+    
+    return render(request, 'getrecipe/scrapedrecipe_detail.html', {'recipe': recipe})
 
