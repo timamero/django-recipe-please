@@ -1,9 +1,8 @@
-from django.forms import ModelForm
+# from django.forms import ModelForm
 
-from .models import ScrapedRecipe
+# from .models import ScrapedRecipe
+from django import forms
 
-class AddRecipeForm(ModelForm):
+class AddRecipeForm(forms.Form):
     """Form to get url"""
-    class Meta:
-        model = ScrapedRecipe
-        fields = ['url']
+    url = forms.URLField(label="url")

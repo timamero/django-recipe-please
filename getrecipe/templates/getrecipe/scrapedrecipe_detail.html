@@ -10,23 +10,23 @@
             <p><strong>Cook Time: </strong> {{ scrapedrecipe.cook_time }}</p>
         </div>
         
-        <div class="ingredients card list-card flex-column">
+        {% comment %} <div class="ingredients card list-card flex-column">
             <h2>Ingredients</h2>
             <ul>
             {% for ingredient in scrapedrecipe.ingredients %}
                 <li>{{ ingredient }}</li>
             {% endfor %}
             </ul>
-        </div>
+        </div> {% endcomment %}
 
-        <div class="instructions card list-card flex-column">
+        {% comment %} <div class="instructions card list-card flex-column">
             <h2>Instructions</h2>
             <ol>
             {% for instructions in scrapedrecipe.instructions %}
                 <li>{{ instructions }}</li>
             {% endfor %}
             </ol>
-        </div>
+        </div> {% endcomment %}
 
         <div class="card">
             <p><a href="{{ scrapedrecipe.url }}">Go to recipe website</a></p>

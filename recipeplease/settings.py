@@ -101,6 +101,9 @@ CACHES = {
         'OPTIONS': {
             'no_delay': True,
             'ignore_exc': True,
+            "max_pool_size": 4,
+            "use_pooling": True,
+
         }
     }
 }
