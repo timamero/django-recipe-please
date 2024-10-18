@@ -146,6 +146,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # STATIC_URL = 'static/'
 
+# Handle Session Using Memcached
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'
+
 # Production Settings
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
