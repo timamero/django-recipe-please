@@ -8,7 +8,7 @@ class Recipe():
         self.recipe_url = recipe_url
         self.soup = get_soup(recipe_url)
         self.title = get_title(self.soup)
-        # self.ingredients = get_ingredients (self.soup)
+        self.ingredients = get_ingredients (self.soup)
         # self.instructions = get_instructions(self.soup)
         self.servings = get_servings(self.soup)
         self.preptime = get_preptime(self.soup)
