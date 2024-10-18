@@ -31,7 +31,7 @@ def index(request):
                 # get_recipe.title, 
                 title,
                 get_recipe.ingredients,
-                # get_recipe.instructions,
+                get_recipe.instructions,
                 get_recipe.servings,
                 get_recipe.preptime,
                 get_recipe.cooktime,
