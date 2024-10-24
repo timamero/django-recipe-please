@@ -1,0 +1,13 @@
+[tool.black]
+line-length = 88
+extend-exclude = '''
+/(
+  | \.git
+  | \.github
+  | \.py_cache
+  | \venv
+  | _build
+  | static
+  | migrations
+)/
+'''
