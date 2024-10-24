@@ -1,6 +1,3 @@
-from django.core.cache import cache
-
-
 class ScrapedRecipeCache:
     def __init__(
         self, url, title, ingredients, instructions, servings, prep_time, cook_time

@@ -1,7 +1,6 @@
 import re
 import requests
 from bs4 import BeautifulSoup
-from urllib.parse import urlparse
 
 
 def get_soup(url):
@@ -18,21 +17,21 @@ def get_soup(url):
 
 
 def get_title(soup):
-    if soup == None:
+    if soup is None:
         return None
     return soup.title.string
 
 
 def get_ingredients(soup):
     """Function to pull ingredients from HTML in recipe website"""
-    if soup == None:
+    if soup is None:
         return None
 
     # message = 'Not able to find ingredients'
     def get_li_elements():
         # The ingredients can be found by searching for key words in the class of div or ul
         container = soup.find(["div", "ul"], class_=re.compile(r"ingredient|ingred"))
-        if container == None:
+        if container is None:
             return None
         li_tags = container.select("li")
         # If container has li tags then return li_tags; if li tags not found, search next container
@@ -46,7 +45,7 @@ def get_ingredients(soup):
         return li_tags
 
     li_list = get_li_elements()
-    if li_list == None:
+    if li_list is None:
         return None
 
     ingredient_list = []
@@ -64,7 +63,7 @@ def get_ingredients(soup):
 
 def get_instructions(soup):
     """Function to pull instructions from HTML in recipe website"""
-    if soup == None:
+    if soup is None:
         return None
 
     # message = 'Not able to find instructions'
@@ -73,7 +72,7 @@ def get_instructions(soup):
         container = soup.find(
             ["div", "ul", "ol"], class_=re.compile(r"instruction|directions")
         )
-        if container == None:
+        if container is None:
             return None
         li_tags = container.select("li")
         p_tags = container.select("p")
@@ -83,7 +82,7 @@ def get_instructions(soup):
             container = container.find_next(
                 ["div", "ul", "ol"], class_=re.compile(r"instruction"), recursive=False
             )
-            if container == None:
+            if container is None:
                 return None
             li_tags = container.select("li")
             p_tags = container.select("p")
@@ -93,7 +92,7 @@ def get_instructions(soup):
         return li_tags
 
     li_p_list = get_li_or_p_elements()
-    if li_p_list == None:
+    if li_p_list is None:
         return None
 
     instruction_list = []
@@ -111,13 +110,13 @@ def get_instructions(soup):
 
 def get_servings(soup):
     """Function to get servings data from HTML in recipe website"""
-    if soup == None:
+    if soup is None:
         return 0
     servings = ""
     servings_container = soup.find(
         ["div", "span"], class_=re.compile(f"servings|yield|yields|serves")
     )
-    if servings_container == None:
+    if servings_container is None:
         return 0
     for txt in servings_container.stripped_strings:
         txt = txt.split()
@@ -132,7 +131,7 @@ def get_servings(soup):
 
 def get_preptime(soup):
     """Function to get prep time data from HTML in recipe website"""
-    if soup == None:
+    if soup is None:
         return ""
     container = soup.find_all(["div", "span", "li"], class_=re.compile(r"prep"))
     if len(container) == 0:
@@ -153,7 +152,7 @@ def get_preptime(soup):
 
 def get_cooktime(soup):
     """Function to get cook time data from HTML in recipe website"""
-    if soup == None:
+    if soup is None:
         return ""
     container = soup.find_all(
         ["div", "span", "li"], class_=re.compile(r"cook.*time|time.*active")
