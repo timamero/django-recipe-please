@@ -114,7 +114,7 @@ def get_servings(soup):
         return 0
     servings = ""
     servings_container = soup.find(
-        ["div", "span"], class_=re.compile(f"servings|yield|yields|serves")
+        ["div", "span"], class_=re.compile("servings|yield|yields|serves")
     )
     if servings_container is None:
         return 0

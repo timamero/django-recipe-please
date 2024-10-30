@@ -1,7 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
-from django.views import generic
 from django.core.cache import cache
 
 # from .models import ScrapedRecipe
@@ -10,7 +9,8 @@ from .forms import AddRecipeForm
 
 from .recipe import Recipe
 
-import uuid, re
+import uuid
+import re
 
 
 def index(request):

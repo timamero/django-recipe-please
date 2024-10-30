@@ -1,7 +1,4 @@
-import requests
-from urllib.parse import urlparse
-from bs4 import BeautifulSoup
-from .funcs import *
+from .funcs import get_soup, get_title, get_ingredients, get_instructions, get_servings, get_preptime, get_cooktime
 
 
 class Recipe:
@@ -16,7 +13,7 @@ class Recipe:
         self.cooktime = get_cooktime(self.soup)
 
     def display_recipe(self):
-        if self.soup == None:
+        if self.soup is None:
             print(f"TITLE: {self.title}")
             return ""
         print(f"TITLE: {self.title}")
