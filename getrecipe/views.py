@@ -28,11 +28,9 @@ def index(request):
             get_recipe = Recipe(
                 form.cleaned_data["url"]
             )  # create new instance of Recipe class
-            print(f"recipe: {get_recipe}")
             title = re.sub(
                 r"[^a-zA-Z0-9 ]", "", get_recipe.title
             )  # Need to clean data so that it can be stored
-            print(f"title: {title}")
             new_recipe = ScrapedRecipeCache(
                 get_recipe.recipe_url,
                 # get_recipe.title,
@@ -84,7 +82,7 @@ def index(request):
 # Test sites
 # https://thewoksoflife.com/ma-po-tofu-real-deal/
 # https://www.tasteofhome.com/recipes/the-ultimate-chicken-noodle-soup/
-# https://mykoreankitchen.com/easy-fried-rice/'
+# https://mykoreankitchen.com/easy-fried-rice/
 
 
 def recipe_data_detail_view(request, recipe_id):
