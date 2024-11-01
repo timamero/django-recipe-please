@@ -1,9 +1,11 @@
 from django.db import models
 from django.urls import reverse
 
+
 class ScrapedRecipe(models.Model):
     """Model representing a recipe"""
-    url = models.URLField(max_length=200, verbose_name='URL')
+
+    url = models.URLField(max_length=200, verbose_name="URL")
     title = models.CharField(max_length=200, blank=True, null=True)
     ingredients = models.JSONField(default=list, null=True, blank=True)
     instructions = models.JSONField(default=list, null=True, blank=True)
@@ -13,9 +15,9 @@ class ScrapedRecipe(models.Model):
 
     def __str__(self):
         return self.title
-    
+
     class Meta:
-        ordering = ['title']
+        ordering = ["title"]
 
     def get_absolute_url(self):
-        return reverse('recipe-detail', args=[str(self.id)])
+        return reverse("recipe-detail", args=[str(self.id)])
