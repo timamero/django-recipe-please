@@ -11,11 +11,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
-# from .secrets import *  # dev
-from .secrets import DEBUG_, MY_SECRET_KEY  # dev
+from .secrets import DEBUG_, MY_SECRET_KEY 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-# BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
@@ -24,15 +22,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = MY_SECRET_KEY  # dev
-# SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = MY_SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = DEBUG_
-# DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]  # dev
-# ALLOWED_HOSTS = ['https://recipeplease-v2-b82eced00232.herokuapp.com/', 'recipeplease-v2-b82eced00232.herokuapp.com']
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 # Application definition
 
@@ -79,18 +74,6 @@ WSGI_APPLICATION = "recipeplease.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-
-# DATABASES = {
-#     "default": {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': DB_NAME,
-#         'USER': DB_USER,
-#         'PASSWORD': DB_PW,
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
 
 CACHES = {
     "default": {
@@ -144,7 +127,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = "/static/"
-# STATIC_URL = 'static/'
 
 # Handle Session Using Memcached
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
@@ -155,6 +137,3 @@ SESSION_CACHE_ALIAS = "default"
 # CSRF_COOKIE_SECURE = True
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "getrecipe/static"),)
-
-# STATIC_ROOT = os.path.join(BASE_DIR, 'getrecipe', 'staticfiles')
-# STATIC_ROOT = os.path.join(BASE_DIR, 'getrecipe/static') # dev
