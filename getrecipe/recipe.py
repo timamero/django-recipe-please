@@ -1,16 +1,17 @@
-from .funcs import get_soup, get_title, get_ingredients, get_instructions, get_servings, get_preptime, get_cooktime
+# from .services.scrape_recipe import get_soup, get_title, get_ingredients, get_instructions, get_servings, get_preptime, get_cooktime
+from getrecipe.services import scrape_recipe
 
 
 class Recipe:
     def __init__(self, recipe_url):
         self.recipe_url = recipe_url
-        self.soup = get_soup(recipe_url)
-        self.title = get_title(self.soup)
-        self.ingredients = get_ingredients(self.soup)
-        self.instructions = get_instructions(self.soup)
-        self.servings = get_servings(self.soup)
-        self.preptime = get_preptime(self.soup)
-        self.cooktime = get_cooktime(self.soup)
+        self.soup = scrape_recipe.get_soup(recipe_url)
+        self.title = scrape_recipe.get_title(self.soup)
+        self.ingredients = scrape_recipe.get_ingredients(self.soup)
+        self.instructions = scrape_recipe.get_instructions(self.soup)
+        self.servings = scrape_recipe.get_servings(self.soup)
+        self.preptime = scrape_recipe.get_preptime(self.soup)
+        self.cooktime = scrape_recipe.get_cooktime(self.soup)
 
     def display_recipe(self):
         if self.soup is None:
