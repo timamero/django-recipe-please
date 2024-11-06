@@ -15,16 +15,6 @@ class ScrapedRecipeCache:
 
 
 # Serialize a Recipe instance to a dictionary
-# def serialize_recipe(recipe):
-#     return {
-#         "url": recipe.url,
-#         "title": recipe.title,
-#         "ingredients": json.dumps(recipe.ingredients),
-#         "instructions": json.dumps(recipe.instructions),
-#         "servings": recipe.servings,
-#         "prep_time": recipe.prep_time,
-#         "cook_time": recipe.cook_time,
-#     }
 def serialize_recipe(recipe):
     recipe_dict = {
         "url": recipe.url,
@@ -42,8 +32,6 @@ def serialize_recipe(recipe):
 
 # Deserialize a dictionary to a Recipe instance
 def deserialize_recipe(data):
-    print(f'function deserializeing the data: {data}')
-    # print(f'url: {data["url"]}')
     data = json.loads(data)
     return ScrapedRecipeCache(
         url=data["url"],
