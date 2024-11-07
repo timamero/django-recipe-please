@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "getrecipe",
 ]
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "getrecipe/static"),)
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -135,4 +135,4 @@ SESSION_CACHE_ALIAS = "default"
 # SESSION_COOKIE_SECURE = True
 # CSRF_COOKIE_SECURE = True
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "getrecipe/static"),)
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, "getrecipe/static"),)
