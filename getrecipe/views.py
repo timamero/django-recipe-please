@@ -6,7 +6,7 @@ from django.core.cache import cache
 from .caches import ScrapedRecipeCache, serialize_recipe, deserialize_recipe
 from .forms import AddRecipeForm
 
-from .recipe import Recipe
+from .services.recipe import Recipe
 
 import uuid
 
