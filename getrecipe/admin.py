@@ -1,4 +1,3 @@
-from django.contrib import admin
-from .models import ScrapedRecipe
+from django.contrib import admin  # noqa: F401
 
-admin.site.register(ScrapedRecipe)
+# TO DO: Disable admin site
