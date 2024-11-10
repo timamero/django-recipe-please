@@ -8,8 +8,9 @@ def get_soup(url):
     response = requests.get(url)
     # Return error message if page not found
     if response.status_code != requests.codes.ok:
-        print("Error: Page not found.")
-        return None
+        # print("Error: Page not found.")
+        # return None
+        raise Exception('Page not found')
     else:
         pass
     src = response.content

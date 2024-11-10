@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.core.cache import cache
@@ -22,6 +22,10 @@ def index(request):
         # Check if the form is valid:
         if form.is_valid():
             recipe = get_scraped_recipe(form.cleaned_data["url"])
+
+            if recipe is None:
+                print('Recipe not found, redirecting accordingly')
+                return redirect('not-found')
 
             serialized_recipe = serialize_recipe(recipe)
 
@@ -52,3 +56,7 @@ def recipe_data_detail_view(request, recipe_id):
         cache.set(recipe_id, recipe, timeout=300)  # Cache it for 5 minutes
 
     return render(request, "recipe_detail.html", {"recipe": deserialize_recipe(recipe)})
+
+
+def recipe_not_found(request):
+    return render(request, "recipe_not_found.html")
