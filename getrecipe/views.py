@@ -29,7 +29,8 @@ def index(request):
             serialized_recipe = serialize_recipe(recipe)
 
             recipe_id = str(uuid.uuid4())[:8]
-            cache.set(recipe_id, serialized_recipe, timeout=300)
+            # Store the recipe in the cache
+            cache.set(recipe_id, serialized_recipe, timeout=300)  # Cache it for 5 minutes
 
             return HttpResponseRedirect(reverse("recipe-detail", args=[recipe_id]))
     # If this is a  GET (or any other method) create the default form
@@ -42,17 +43,12 @@ def index(request):
 
 
 def recipe_data_detail_view(request, recipe_id):
-    # Not able to get recipe from cache
     recipe = cache.get(recipe_id)
 
     if not recipe:
         cache.clear()
         # If it's not in the cache, raise 404
         raise Http404
-
-    else:
-        # Store the recipe in the cache
-        cache.set(recipe_id, recipe, timeout=300)  # Cache it for 5 minutes
 
     return render(request, "recipe_detail.html", {"recipe": deserialize_recipe(recipe)})
 
