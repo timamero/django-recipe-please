@@ -1,4 +1,3 @@
-# from .services.scrape_recipe import get_soup, get_title, get_ingredients, get_instructions, get_servings, get_preptime, get_cooktime
 from pydantic import BaseModel
 from typing import List, Optional
 
