@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from typing import List, Optional
 
 
-class Recipe(BaseModel):
+class ScrapedRecipe(BaseModel):
     url: Optional[str]
     title: Optional[str]
     ingredients: Optional[List[str]]

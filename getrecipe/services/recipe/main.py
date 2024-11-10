@@ -1,5 +1,5 @@
 from . import scrape_recipe
-from .model import Recipe
+from .model import ScrapedRecipe
 
 
 def get_scraped_recipe(url):
@@ -18,7 +18,7 @@ def get_scraped_recipe(url):
     # print(f'preptime: {scrape_recipe.get_preptime(soup)}')
     # print(f'cooktime: {scrape_recipe.get_cooktime(soup)}')
 
-    return Recipe(
+    return ScrapedRecipe(
         url=url,
         title=scrape_recipe.get_title(soup),
         ingredients=scrape_recipe.get_ingredients(soup),
