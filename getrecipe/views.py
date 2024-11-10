@@ -24,7 +24,6 @@ def index(request):
             recipe = get_scraped_recipe(form.cleaned_data["url"])
 
             if recipe is None:
-                print('Recipe not found, redirecting accordingly')
                 return redirect('not-found')
 
             serialized_recipe = serialize_recipe(recipe)
