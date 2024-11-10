@@ -21,23 +21,8 @@ def index(request):
         form = AddRecipeForm(request.POST)
         # Check if the form is valid:
         if form.is_valid():
-            # Create new record
-            # get_recipe = Recipe(
-            #     form.cleaned_data["url"]
-            # )  # create new instance of Recipe class
-            # new_recipe = ScrapedRecipeCache(
-            #     get_recipe.recipe_url,
-            #     get_recipe.title,
-            #     get_recipe.ingredients,
-            #     get_recipe.instructions,
-            #     get_recipe.servings,
-            #     get_recipe.preptime,
-            #     get_recipe.cooktime,
-            # )
-            print('getting recipe...')
             recipe = get_scraped_recipe(form.cleaned_data["url"])
-            print('got the recipe')
-            print(f'here is the recipe: {recipe}')
+
             serialized_recipe = serialize_recipe(recipe)
 
             recipe_id = str(uuid.uuid4())[:8]
