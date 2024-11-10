@@ -1,6 +1,3 @@
-# from django.forms import ModelForm
-
-# from .models import ScrapedRecipe
 from django import forms
 
 
