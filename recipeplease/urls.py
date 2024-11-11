@@ -14,16 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-# from django.contrib import admin
 from django.urls import path, include
 
 # Use static() to add url mapping to serve static files during development (only)
 from django.conf import settings
 from django.conf.urls.static import static
 
-# urlpatterns = [
-#     path("admin/", admin.site.urls),
-# ]
 
 urlpatterns = [
     path("", include("getrecipe.urls")),
