@@ -126,6 +126,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = "/static/"
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
 
 # Handle Session Using Memcached
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
@@ -134,5 +138,3 @@ SESSION_CACHE_ALIAS = "default"
 # Production Settings
 # SESSION_COOKIE_SECURE = True
 # CSRF_COOKIE_SECURE = True
-
-# STATICFILES_DIRS = (os.path.join(BASE_DIR, "getrecipe/static"),)
