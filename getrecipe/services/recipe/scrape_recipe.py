@@ -6,10 +6,9 @@ from bs4 import BeautifulSoup
 def get_soup(url):
     """Get the content of the website"""
     response = requests.get(url)
-    # Return error message if page not found
+    # Raise error if page not found
     if response.status_code != requests.codes.ok:
-        print("Error: Page not found.")
-        return None
+        raise Exception('Page not found')
     else:
         pass
     src = response.content

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Sorry!!! I am having trouble getting the recipe. Try a recipe from a different website.</h1>
+    {% load static %}
+    <img class="large-img" src="{% static '/images/cutlery-cross-of-a-knife-and-a-spoon-svgrepo-com.svg' %}" alt="Cutlery in form of x">
+    <p><a href="{% url 'index' %}">Get another recipe</a></p>
+{% endblock content %}

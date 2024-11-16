@@ -1,19 +1,11 @@
-class ScrapedRecipeCache:
-    def __init__(
-        self, url, title, ingredients, instructions, servings, prep_time, cook_time
-    ):
-        self.url = url
-        self.title = title
-        self.ingredients = ingredients
-        self.instructions = instructions
-        self.servings = servings
-        self.prep_time = prep_time
-        self.cook_time = cook_time
+import json
+
+from .services.recipe import ScrapedRecipe
 
 
 # Serialize a Recipe instance to a dictionary
 def serialize_recipe(recipe):
-    return {
+    recipe_dict = {
         "url": recipe.url,
         "title": recipe.title,
         "ingredients": recipe.ingredients,
@@ -23,10 +15,14 @@ def serialize_recipe(recipe):
         "cook_time": recipe.cook_time,
     }
 
+    serialized_dict = json.dumps(recipe_dict)
+    return serialized_dict
+
 
 # Deserialize a dictionary to a Recipe instance
 def deserialize_recipe(data):
-    return ScrapedRecipeCache(
+    data = json.loads(data)
+    return ScrapedRecipe(
         url=data["url"],
         title=data["title"],
         ingredients=data["ingredients"],

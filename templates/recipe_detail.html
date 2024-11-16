@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ recipe.title }}</h1>
+
+    <div class="card">
+        <p><strong>Servings: </strong> {{ recipe.servings }}</p>
+        <p><strong>Prep Time: </strong> {{ recipe.prep_time }}</p>
+        <p><strong>Cook Time: </strong> {{ recipe.cook_time }}</p>
+    </div>
+    
+    <div class="ingredients card list-card flex-column">
+        <h2>Ingredients</h2>
+        <ul>
+        {% for ingredient in recipe.ingredients %}
+            <li>{{ ingredient }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <div class="instructions card list-card flex-column">
+        <h2>Instructions</h2>
+        <ol>
+        {% for instructions in recipe.instructions %}
+            <li>{{ instructions }}</li>
+        {% endfor %}
+        </ol>
+    </div>
+
+    <div class="card">
+        <p><a href="{{ recipe.url }}">Go to recipe website</a></p>
+        <p><a href="{% url 'index' %}">Get another recipe</a></p>
+    </div>
+
+{% endblock content %}
