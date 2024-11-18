@@ -128,23 +128,27 @@ def get_servings(soup):
 
 
 def get_preptime(soup):
+    # TESTING THIS FUNCTION
     """Function to get prep time data from HTML in recipe website"""
     if soup is None:
         return ""
     container = soup.find_all(["div", "span", "li"], class_=re.compile(r"prep"))
     if len(container) == 0:
         return "Not found"
+
     text_list = []
     for element in container:
         for text in element.stripped_strings:
             if text not in text_list:
                 text_list.append(text)
-    # Remove label/header with 'Prep'
-    for string in text_list:
-        prep_regex = re.match(r"prep", string.lower())
-        if prep_regex:
-            text_list.remove(string)
-    preptime = " ".join(text_list)
+
+    if re.match(r"prep", text_list[0].lower()):
+        start_index = 1
+    else:
+        start_index = 0
+
+    preptime = " ".join(text_list[start_index:3])
+
     return preptime
 
 
