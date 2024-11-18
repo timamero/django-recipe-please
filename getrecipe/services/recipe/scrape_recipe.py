@@ -6,11 +6,10 @@ from bs4 import BeautifulSoup
 def get_soup(url):
     """Get the content of the website"""
     response = requests.get(url)
-    # Raise error if page not found
+
     if response.status_code != requests.codes.ok:
-        raise Exception('Page not found')
-    else:
-        pass
+        return None
+
     src = response.content
     return BeautifulSoup(src, "lxml")
 
