@@ -2,6 +2,8 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
+from .scraper import get_elements_by_class_regex
+
 
 def get_soup(url):
     """Get the content of the website"""
@@ -132,7 +134,13 @@ def get_preptime(soup):
     """Function to get prep time data from HTML in recipe website"""
     if soup is None:
         return ""
-    container = soup.find_all(["div", "span", "li"], class_=re.compile(r"prep"))
+    # TODO: Update regex so that it matches classes "recipes-details", "recipe-details", "recipedetails", "recipedetail"
+    # regex = re.compile(r"prep|recipe([s\-\_]{0,2})detail(s?)")
+    regex = re.compile(r"prep")
+    container = get_elements_by_class_regex(soup, regex)
+
+    # TODO: Filter items to remove any that don't contain the text prep
+
     if len(container) == 0:
         return "Not found"
 
