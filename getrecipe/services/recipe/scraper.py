@@ -1,4 +1,27 @@
-def get_elements_by_class_regex(soup, class_regex):
-    elements = soup.find_all(["div", "span", "li"], class_=class_regex)
-    # print(f"elements {elements}")
+import re
+
+
+def get_elements_by_class_regex(soup, class_patterns):
+
+    elements = []
+    for pattern in class_patterns:
+        elements.extend(
+            soup.find_all(["div", "span", "li"], class_=re.compile(pattern, re.I))
+        )
+
     return elements
+
+
+def find_preparation_time(elements):
+    for element in elements:
+        has_digits = bool(re.search(r"\d", "".join(element.stripped_strings)))
+        prep_elements = element.find_all(string=re.compile(r"prep", re.I))
+        if has_digits and len(prep_elements) > 0:
+            match = re.search(
+                r"(\d{1,2})\s?((min(utes)?)|(hour(s)?))",
+                "".join(element.stripped_strings),
+                re.I,
+            )
+            if match:
+                return match[0]
+        return None

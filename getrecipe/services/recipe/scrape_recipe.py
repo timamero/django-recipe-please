@@ -2,7 +2,7 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-from scraper import get_elements_by_class_regex
+from .scraper import get_elements_by_class_regex, find_preparation_time
 
 
 def get_soup(url):
@@ -134,46 +134,12 @@ def get_preptime(soup):
     """Function to get prep time data from HTML in recipe website"""
     if soup is None:
         return ""
-    # TODO: Update regex so that it matches classes "recipes-details", "recipe-details", "recipedetails", "recipedetail"
-    regex = re.compile(r"prep|recipe([s\-\_]{0,2})detail(s?)")
-    # regex = re.compile(r"prep")
-    container = get_elements_by_class_regex(soup, regex)
 
-    # TODO: Filter items to remove any that don't contain the text prep
-    for element in container:
-        # print(f"element: {element}")
-        has_digits = bool(re.search(r"\d", "".join(element.stripped_strings)))
-        prep_elements = element.find_all(string=re.compile(r"prep", re.I))
+    pattern1 = r"prep"
+    pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
+    container = get_elements_by_class_regex(soup, [pattern1, pattern2])
 
-        if has_digits and len(prep_elements) > 0:
-            # print(
-            #     f"element -find_all: {element.find_all(string=re.compile(r"prep", re.I))}"
-            # )
-            print(f"element: {"".join(element.stripped_strings)}")
-            match = re.search(
-                r"(\d{1,2})\s((min(utes)?)|(hour(s)?))",
-                "".join(element.stripped_strings),
-                re.I,
-            )
-            print(f"match: {match[0]}")
-            print("------")
-
-    if len(container) == 0:
-        return "Not found"
-
-    text_list = []
-    for element in container:
-        for text in element.stripped_strings:
-            if text not in text_list:
-                text_list.append(text)
-
-    if re.match(r"prep", text_list[0].lower()):
-        start_index = 1
-    else:
-        start_index = 0
-
-    preptime = " ".join(text_list[start_index:3])
-
+    preptime = find_preparation_time(container)
     return preptime
 
 
