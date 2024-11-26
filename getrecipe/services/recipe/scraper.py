@@ -2,13 +2,11 @@ import re
 from bs4 import BeautifulSoup
 
 
-def get_elements_by_class_regex(soup: BeautifulSoup, class_patterns):
+def get_elements_by_class_regex(soup: BeautifulSoup, element_types, class_patterns):
 
     elements = []
     for pattern in class_patterns:
-        elements.extend(
-            soup.find_all(["div", "span", "li"], class_=re.compile(pattern, re.I))
-        )
+        elements.extend(soup.find_all(element_types, class_=re.compile(pattern, re.I)))
 
     return elements
 

@@ -136,7 +136,9 @@ def get_preptime(soup):
 
     pattern1 = r"prep"
     pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
-    container = get_elements_by_class_regex(soup, [pattern1, pattern2])
+    container = get_elements_by_class_regex(
+        soup, ["div", "span", "li"], [pattern1, pattern2]
+    )
 
     preptime = find_preparation_time(container)
     return preptime
@@ -149,7 +151,9 @@ def get_cooktime(soup):
 
     pattern1 = r"cook.*time|time.*active"
     pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
-    container = get_elements_by_class_regex(soup, [pattern1, pattern2])
+    container = get_elements_by_class_regex(
+        soup, ["div", "span", "li"], [pattern1, pattern2]
+    )
 
     cooktime = find_cook_time(container)
     return cooktime
