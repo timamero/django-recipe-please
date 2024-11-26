@@ -75,7 +75,7 @@ def get_instructions(soup):
     def get_li_or_p_elements():
         # The ingredients can be found by searching for key words in the class of div or ul
         container = soup.find(
-            ["div", "ul", "ol"], class_=re.compile(r"instruction|directions")
+            ["div", "ul", "ol"], class_=re.compile(r"instruction|direction|step")
         )
         if container is None:
             return None
@@ -85,7 +85,9 @@ def get_instructions(soup):
         # If container has li tags then return li_tags; if li tags not found, search next container
         while len(li_tags) == 0 and len(p_tags) == 0:
             container = container.find_next(
-                ["div", "ul", "ol"], class_=re.compile(r"instruction"), recursive=False
+                ["div", "ul", "ol"],
+                class_=re.compile(r"instruction|direction"),
+                recursive=False,
             )
             if container is None:
                 return None
