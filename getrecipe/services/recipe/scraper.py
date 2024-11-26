@@ -1,7 +1,8 @@
 import re
+from bs4 import BeautifulSoup
 
 
-def get_elements_by_class_regex(soup, class_patterns):
+def get_elements_by_class_regex(soup: BeautifulSoup, class_patterns):
 
     elements = []
     for pattern in class_patterns:
