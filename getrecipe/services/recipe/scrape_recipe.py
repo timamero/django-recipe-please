@@ -130,7 +130,6 @@ def get_servings(soup):
 
 
 def get_preptime(soup):
-    # TESTING THIS FUNCTION
     """Function to get prep time data from HTML in recipe website"""
     if soup is None:
         return ""
