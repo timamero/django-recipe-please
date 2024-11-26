@@ -147,31 +147,10 @@ def get_cooktime(soup):
     """Function to get cook time data from HTML in recipe website"""
     if soup is None:
         return ""
-    # container = soup.find_all(
-    #     ["div", "span", "li"], class_=re.compile(r"cook.*time|time.*active")
-    # )
-    # if len(container) == 0:
-    #     return "Not found"
-    # text_list = []
-    # for element in container:
-    #     for text in element.stripped_strings:
-    #         if text not in text_list:
-    #             text_list.append(text)
-    # # # Remove label/header with 'Cook'
-    # for string in text_list:
-    #     cook_regex = re.match(r"cook", string.lower())
-    #     if cook_regex:
-    #         text_list.remove(string)
-    # cooktime = " ".join(text_list)
-    # return cooktime
-    print(f"Getting cooktime for {soup.title.string}")
 
     pattern1 = r"cook.*time|time.*active"
     pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
     container = get_elements_by_class_regex(soup, [pattern1, pattern2])
 
     cooktime = find_cook_time(container)
-    print("--------------")
-    print("--------------")
-    print("--------------")
     return cooktime
