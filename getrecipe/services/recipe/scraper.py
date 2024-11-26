@@ -49,3 +49,22 @@ def find_cook_time(elements):
                     re.search(alpha_pattern, match[0]).group(),
                 )
         return None
+
+
+def find_servings(elements):
+    for element in elements:
+        match = re.search(
+            r"(servings|yield|yields|serves):?\s?(\d{1,2})",
+            "".join(element.stripped_strings),
+            re.I,
+        )
+        if match:
+            digit_pattern = r"\d\d?"
+            return re.search(digit_pattern, match[0]).group()
+
+        match2 = re.search(r"\d{1,2}", "".join(element.stripped_strings))
+
+        if match2:
+            return match2.group()
+
+    return None

@@ -2,7 +2,12 @@ import re
 import requests
 from bs4 import BeautifulSoup
 
-from .scraper import get_elements_by_class_regex, find_preparation_time, find_cook_time
+from .scraper import (
+    get_elements_by_class_regex,
+    find_preparation_time,
+    find_cook_time,
+    find_servings,
+)
 
 
 def get_soup(url):
@@ -112,21 +117,12 @@ def get_servings(soup):
     """Function to get servings data from HTML in recipe website"""
     if soup is None:
         return 0
-    servings = ""
-    servings_container = soup.find(
-        ["div", "span"], class_=re.compile("servings|yield|yields|serves")
-    )
-    if servings_container is None:
-        return 0
-    for txt in servings_container.stripped_strings:
-        txt = txt.split()
-        for element in txt:
-            if element.isdigit():
-                servings = element
-                return servings
 
-    if servings == "":
-        return 0
+    pattern1 = r"serving(s?)|yield|yields|serves"
+    pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
+    container = get_elements_by_class_regex(soup, ["div", "span"], [pattern1, pattern2])
+
+    return find_servings(container)
 
 
 def get_preptime(soup):
