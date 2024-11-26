@@ -24,5 +24,10 @@ def find_preparation_time(elements):
                 re.I,
             )
             if match:
-                return match[0]
+                digit_pattern = r"\d\d?"
+                alpha_pattern = r"[a-zA-Z]++"
+                return "{0} {1}".format(
+                    re.search(digit_pattern, match[0]).group(),
+                    re.search(alpha_pattern, match[0]).group(),
+                )
         return None
