@@ -26,6 +26,24 @@ def elements_filtered_by_class(soup, element_types, class_patterns):
     return elements
 
 
+def list_found_by_class(soup, pattern):
+    container = soup.find(["div", "ul"], class_=re.compile(pattern, re.I))
+    if container is None:
+        return None
+    li_elements = container.select("li")
+    # If container has li tags then return li_tags; if li tags not found, search next container
+    while len(li_elements) == 0:
+        container = container.find_next(
+            ["div", "ul"],
+            class_=re.compile(pattern, re.I),
+            recursive=False,
+        )
+        if container is None:
+            return None
+        li_elements = container.select("li")
+    return li_elements
+
+
 def scrape_title(soup):
     if soup is None:
         return None
@@ -36,24 +54,8 @@ def scrape_ingredients(soup):
     if soup is None:
         return None
 
-    def get_li_elements():
-        container = soup.find(["div", "ul"], class_=re.compile(r"ingredient|ingred"))
-        if container is None:
-            return None
-        li_tags = container.select("li")
-        # If container has li tags then return li_tags; if li tags not found, search next container
-        while len(li_tags) == 0:
-            container = container.find_next(
-                ["div", "ul"],
-                class_=re.compile(r"ingredient|ingred"),
-                recursive=False,
-            )
-            if container is None:
-                return None
-            li_tags = container.select("li")
-        return li_tags
-
-    li_list = get_li_elements()
+    pattern = r"ingredient|ingred"
+    li_list = list_found_by_class(soup, pattern)
     if li_list is None:
         return None
 
