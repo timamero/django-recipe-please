@@ -109,11 +109,11 @@ def scrape_preparation_time(soup):
 
     pattern1 = r"prep"
     pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
-    container = elements_filtered_by_class(
+    elements = elements_filtered_by_class(
         soup, ["div", "span", "li"], [pattern1, pattern2]
     )
 
-    for element in container:
+    for element in elements:
         has_digits = bool(re.search(r"\d", "".join(element.stripped_strings)))
         prep_elements = element.find_all(string=re.compile(r"prep", re.I))
         if has_digits and len(prep_elements) > 0:
@@ -139,13 +139,13 @@ def scrape_cook_time(soup):
     pattern1 = r"cook.*time|time.*active"
     pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
     pattern3 = r"recipe-time"
-    container = elements_filtered_by_class(
+    elements = elements_filtered_by_class(
         soup,
         ["div", "span", "li"],
         [pattern1, pattern2, pattern3],
     )
 
-    for element in container:
+    for element in elements:
         has_digits = bool(re.search(r"\d", "".join(element.stripped_strings)))
         cook_elements = element.find_all(string=re.compile(r"cook(ing|\stime)?", re.I))
 
@@ -176,9 +176,9 @@ def scrape_servings(soup):
 
     pattern1 = r"serving(s?)|yield|yields|serves"
     pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
-    container = elements_filtered_by_class(soup, ["div", "span"], [pattern1, pattern2])
+    elements = elements_filtered_by_class(soup, ["div", "span"], [pattern1, pattern2])
 
-    for element in container:
+    for element in elements:
         match = re.search(
             r"(servings|yield|yields|serves):?\s?(\d{1,2})",
             "".join(element.stripped_strings),
