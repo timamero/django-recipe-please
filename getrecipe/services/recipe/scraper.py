@@ -2,7 +2,7 @@ import re
 from bs4 import BeautifulSoup
 
 
-def get_elements_by_class_regex(soup: BeautifulSoup, element_types, class_patterns):
+def elements_filtered_by_class(soup: BeautifulSoup, element_types, class_patterns):
 
     elements = []
     for pattern in class_patterns:
@@ -11,7 +11,7 @@ def get_elements_by_class_regex(soup: BeautifulSoup, element_types, class_patter
     return elements
 
 
-def find_preparation_time(elements):
+def scrape_preparation_time(elements):
     for element in elements:
         has_digits = bool(re.search(r"\d", "".join(element.stripped_strings)))
         prep_elements = element.find_all(string=re.compile(r"prep", re.I))
@@ -31,7 +31,7 @@ def find_preparation_time(elements):
         return None
 
 
-def find_cook_time(elements):
+def scrape_cook_time(elements):
     for element in elements:
         has_digits = bool(re.search(r"\d", "".join(element.stripped_strings)))
         cook_elements = element.find_all(string=re.compile(r"cook", re.I))
@@ -51,7 +51,7 @@ def find_cook_time(elements):
         return None
 
 
-def find_servings(elements):
+def scrape_servings(elements):
     for element in elements:
         match = re.search(
             r"(servings|yield|yields|serves):?\s?(\d{1,2})",

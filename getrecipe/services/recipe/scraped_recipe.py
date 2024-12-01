@@ -3,10 +3,10 @@ import requests
 from bs4 import BeautifulSoup
 
 from .scraper import (
-    get_elements_by_class_regex,
-    find_preparation_time,
-    find_cook_time,
-    find_servings,
+    elements_filtered_by_class,
+    scrape_preparation_time,
+    scrape_cook_time,
+    scrape_servings,
 )
 
 
@@ -125,9 +125,9 @@ def servings(soup):
 
     pattern1 = r"serving(s?)|yield|yields|serves"
     pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
-    container = get_elements_by_class_regex(soup, ["div", "span"], [pattern1, pattern2])
+    container = elements_filtered_by_class(soup, ["div", "span"], [pattern1, pattern2])
 
-    return find_servings(container)
+    return scrape_servings(container)
 
 
 def preptime(soup):
@@ -137,11 +137,11 @@ def preptime(soup):
 
     pattern1 = r"prep"
     pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
-    container = get_elements_by_class_regex(
+    container = elements_filtered_by_class(
         soup, ["div", "span", "li"], [pattern1, pattern2]
     )
 
-    preptime = find_preparation_time(container)
+    preptime = scrape_preparation_time(container)
     return preptime
 
 
@@ -153,9 +153,9 @@ def cooktime(soup):
     pattern1 = r"cook.*time|time.*active"
     pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
     pattern3 = r"recipe-time"
-    container = get_elements_by_class_regex(
+    container = elements_filtered_by_class(
         soup, ["div", "span", "li"], [pattern1, pattern2, pattern3]
     )
 
-    cooktime = find_cook_time(container)
+    cooktime = scrape_cook_time(container)
     return cooktime
