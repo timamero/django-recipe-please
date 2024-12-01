@@ -13,7 +13,6 @@ def soup(url):
         return None
 
     src = response.content
-    # return BeautifulSoup(src, "lxml")
 
     return BeautifulSoup(src, "lxml")
 
@@ -37,9 +36,7 @@ def scrape_ingredients(soup):
     if soup is None:
         return None
 
-    # message = 'Not able to find ingredients'
     def get_li_elements():
-        # The ingredients can be found by searching for key words in the class of div or ul
         container = soup.find(["div", "ul"], class_=re.compile(r"ingredient|ingred"))
         if container is None:
             return None
@@ -78,7 +75,6 @@ def scrape_instructions(soup):
     if soup is None:
         return None
 
-    # message = 'Not able to find instructions'
     def get_li_or_p_elements():
         # The ingredients can be found by searching for key words in the class of div or ul
         container = soup.find(
@@ -159,13 +155,21 @@ def scrape_cook_time(soup):
     pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
     pattern3 = r"recipe-time"
     container = elements_filtered_by_class(
-        soup, ["div", "span", "li"], [pattern1, pattern2, pattern3]
+        soup,
+        ["div", "span", "li"],
+        [pattern1, pattern2, pattern3],
     )
 
     for element in container:
         has_digits = bool(re.search(r"\d", "".join(element.stripped_strings)))
-        cook_elements = element.find_all(string=re.compile(r"cook", re.I))
-        if has_digits and len(cook_elements) > 0:
+        cook_elements = element.find_all(string=re.compile(r"cook(ing|\stime)?", re.I))
+
+        string_length = len("".join(element.stripped_strings))
+        string_length_max = (
+            50  # Set max string length to filter out strings that are too long
+        )
+
+        if has_digits and len(cook_elements) > 0 and string_length < string_length_max:
             match = re.search(
                 r"(cook(ing|\s?time)?):?\s?(\d{1,2})\s?((min(utes)?)|(hour(s)?))",
                 "".join(element.stripped_strings),
@@ -178,7 +182,7 @@ def scrape_cook_time(soup):
                     re.search(digit_pattern, match[0]).group(),
                     re.search(alpha_pattern, match[0]).group(),
                 )
-        return None
+    return None
 
 
 def scrape_servings(soup):
