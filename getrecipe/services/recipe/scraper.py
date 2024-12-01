@@ -32,7 +32,6 @@ def list_found_by_class(soup, pattern):
         return None
     li_elements = container.select("li")
     p_elements = container.select("p")
-    # If container has li tags then return li_tags; if li tags not found, search next container
     while len(li_elements) == 0 and len(p_elements) == 0:
         container = container.find_next(
             ["div", "ul", "ol"],
@@ -41,7 +40,7 @@ def list_found_by_class(soup, pattern):
         )
         if container is None:
             continue
-            # return None
+
         li_elements = container.select("li")
         p_elements = container.select("p")
 
