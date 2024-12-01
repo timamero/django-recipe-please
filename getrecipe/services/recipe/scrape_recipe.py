@@ -10,7 +10,7 @@ from .scraper import (
 )
 
 
-def get_soup(url):
+def soup(url):
     """Get the content of the website"""
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
@@ -24,13 +24,13 @@ def get_soup(url):
     return BeautifulSoup(src, "lxml")
 
 
-def get_title(soup):
+def title(soup):
     if soup is None:
         return None
     return soup.title.string
 
 
-def get_ingredients(soup):
+def ingredients(soup):
     """Function to pull ingredients from HTML in recipe website"""
     if soup is None:
         return None
@@ -69,7 +69,7 @@ def get_ingredients(soup):
     return ingredient_list
 
 
-def get_instructions(soup):
+def instructions(soup):
     """Function to pull instructions from HTML in recipe website"""
     if soup is None:
         return None
@@ -118,7 +118,7 @@ def get_instructions(soup):
     return instruction_list
 
 
-def get_servings(soup):
+def servings(soup):
     """Function to get servings data from HTML in recipe website"""
     if soup is None:
         return 0
@@ -130,7 +130,7 @@ def get_servings(soup):
     return find_servings(container)
 
 
-def get_preptime(soup):
+def preptime(soup):
     """Function to get prep time data from HTML in recipe website"""
     if soup is None:
         return ""
@@ -145,7 +145,7 @@ def get_preptime(soup):
     return preptime
 
 
-def get_cooktime(soup):
+def cooktime(soup):
     """Function to get cook time data from HTML in recipe website"""
     if soup is None:
         return ""
