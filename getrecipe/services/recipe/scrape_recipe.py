@@ -152,8 +152,9 @@ def get_cooktime(soup):
 
     pattern1 = r"cook.*time|time.*active"
     pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
+    pattern3 = r"recipe-time"
     container = get_elements_by_class_regex(
-        soup, ["div", "span", "li"], [pattern1, pattern2]
+        soup, ["div", "span", "li"], [pattern1, pattern2, pattern3]
     )
 
     cooktime = find_cook_time(container)
