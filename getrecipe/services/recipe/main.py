@@ -4,7 +4,7 @@ from .model import ScrapedRecipe
 
 def get_scraped_recipe(url):
     try:
-        soup = scraped_recipe.get_soup(url)
+        soup = scraped_recipe.soup(url)
     except Exception as e:
         print(f"Error: {e}")
         return None
