@@ -7,3 +7,4 @@ install-notes.txt
 **/__pycache__
 
 temp-*
+temp-*/
