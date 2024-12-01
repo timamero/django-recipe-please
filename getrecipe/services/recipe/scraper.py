@@ -27,20 +27,29 @@ def elements_filtered_by_class(soup, element_types, class_patterns):
 
 
 def list_found_by_class(soup, pattern):
-    container = soup.find(["div", "ul"], class_=re.compile(pattern, re.I))
+    container = soup.find(["div", "ul", "ol"], class_=re.compile(pattern, re.I))
     if container is None:
         return None
     li_elements = container.select("li")
+    p_elements = container.select("p")
     # If container has li tags then return li_tags; if li tags not found, search next container
-    while len(li_elements) == 0:
+    while len(li_elements) == 0 and len(p_elements) == 0:
         container = container.find_next(
-            ["div", "ul"],
+            ["div", "ul", "ol"],
             class_=re.compile(pattern, re.I),
             recursive=False,
         )
         if container is None:
-            return None
+            continue
+            # return None
         li_elements = container.select("li")
+        p_elements = container.select("p")
+
+    if len(li_elements) == 0 and len(p_elements) == 0:
+        return None
+
+    if len(li_elements) == 0:
+        return p_elements
     return li_elements
 
 
@@ -55,12 +64,12 @@ def scrape_ingredients(soup):
         return None
 
     pattern = r"ingredient|ingred"
-    li_list = list_found_by_class(soup, pattern)
-    if li_list is None:
+    list = list_found_by_class(soup, pattern)
+    if list is None:
         return None
 
     ingredient_list = []
-    for li in li_list:
+    for li in list:
         single_ingredient = []
         for txt in li.stripped_strings:
             if txt.encode() != b"\xe2\x96\xa2":  # Don't include checkboxes
@@ -77,38 +86,13 @@ def scrape_instructions(soup):
     if soup is None:
         return None
 
-    def get_li_or_p_elements():
-        # The ingredients can be found by searching for key words in the class of div or ul
-        container = soup.find(
-            ["div", "ul", "ol"], class_=re.compile(r"instruction|direction|step")
-        )
-        if container is None:
-            return None
-        li_tags = container.select("li")
-        p_tags = container.select("p")
-
-        # If container has li tags then return li_tags; if li tags not found, search next container
-        while len(li_tags) == 0 and len(p_tags) == 0:
-            container = container.find_next(
-                ["div", "ul", "ol"],
-                class_=re.compile(r"instruction|direction"),
-                recursive=False,
-            )
-            if container is None:
-                return None
-            li_tags = container.select("li")
-            p_tags = container.select("p")
-
-        if len(li_tags) == 0:
-            return p_tags
-        return li_tags
-
-    li_p_list = get_li_or_p_elements()
-    if li_p_list is None:
+    pattern = r"instruction|direction|step"
+    list = list_found_by_class(soup, pattern)
+    if list is None:
         return None
 
     instruction_list = []
-    for item in li_p_list:
+    for item in list:
         single_instruction = []
         for txt in item.stripped_strings:
             single_instruction.append(" ".join(txt.split()))
