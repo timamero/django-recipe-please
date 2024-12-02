@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def soup(url):
+def set_soup(url):
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
     }
@@ -14,10 +14,17 @@ def soup(url):
 
     src = response.content
 
-    return BeautifulSoup(src, "lxml")
+    # return BeautifulSoup(src, "lxml")
+    global soup
+    soup = BeautifulSoup(src, "lxml")
 
 
-def elements_filtered_by_class(soup, element_types, class_patterns):
+def set_soup_html(html):
+    global soup
+    soup = BeautifulSoup(html, "lxml")
+
+
+def elements_filtered_by_class(element_types, class_patterns):
 
     elements = []
     for pattern in class_patterns:
@@ -26,7 +33,7 @@ def elements_filtered_by_class(soup, element_types, class_patterns):
     return elements
 
 
-def list_found_by_class(soup, pattern):
+def list_found_by_class(pattern):
     container = soup.find(["div", "ul", "ol"], class_=re.compile(pattern, re.I))
     if container is None:
         return None
@@ -52,18 +59,18 @@ def list_found_by_class(soup, pattern):
     return li_elements
 
 
-def scrape_title(soup):
+def scrape_title():
     if soup is None:
         return None
     return soup.title.string
 
 
-def scrape_ingredients(soup):
+def scrape_ingredients():
     if soup is None:
         return None
 
     pattern = r"ingredient|ingred"
-    list = list_found_by_class(soup, pattern)
+    list = list_found_by_class(pattern)
     if list is None:
         return None
 
@@ -80,13 +87,12 @@ def scrape_ingredients(soup):
     return ingredient_list
 
 
-def scrape_instructions(soup):
-    """Function to pull instructions from HTML in recipe website"""
+def scrape_instructions():
     if soup is None:
         return None
 
     pattern = r"instruction|direction|step"
-    list = list_found_by_class(soup, pattern)
+    list = list_found_by_class(pattern)
     if list is None:
         return None
 
@@ -103,15 +109,13 @@ def scrape_instructions(soup):
     return instruction_list
 
 
-def scrape_preparation_time(soup):
+def scrape_preparation_time():
     if soup is None:
         return ""
 
     pattern1 = r"prep"
     pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
-    elements = elements_filtered_by_class(
-        soup, ["div", "span", "li"], [pattern1, pattern2]
-    )
+    elements = elements_filtered_by_class(["div", "span", "li"], [pattern1, pattern2])
 
     for element in elements:
         has_digits = bool(re.search(r"\d", "".join(element.stripped_strings)))
@@ -132,7 +136,7 @@ def scrape_preparation_time(soup):
         return None
 
 
-def scrape_cook_time(soup):
+def scrape_cook_time():
     if soup is None:
         return ""
 
@@ -140,7 +144,6 @@ def scrape_cook_time(soup):
     pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
     pattern3 = r"recipe-time"
     elements = elements_filtered_by_class(
-        soup,
         ["div", "span", "li"],
         [pattern1, pattern2, pattern3],
     )
@@ -170,13 +173,13 @@ def scrape_cook_time(soup):
     return None
 
 
-def scrape_servings(soup):
+def scrape_servings():
     if soup is None:
-        return 0
+        return ""
 
     pattern1 = r"serving(s?)|yield|yields|serves"
     pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
-    elements = elements_filtered_by_class(soup, ["div", "span"], [pattern1, pattern2])
+    elements = elements_filtered_by_class(["div", "span"], [pattern1, pattern2])
 
     for element in elements:
         match = re.search(

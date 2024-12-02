@@ -22,15 +22,17 @@ def index(request):
         # Check if the form is valid:
         if form.is_valid():
             recipe = get_scraped_recipe(form.cleaned_data["url"])
-
+            print(f"recipe::: {recipe}")
             if recipe is None:
-                return redirect('not-found')
+                return redirect("not-found")
 
             serialized_recipe = serialize_recipe(recipe)
 
             recipe_id = str(uuid.uuid4())[:8]
             # Store the recipe in the cache
-            cache.set(recipe_id, serialized_recipe, timeout=300)  # Cache it for 5 minutes
+            cache.set(
+                recipe_id, serialized_recipe, timeout=300
+            )  # Cache it for 5 minutes
 
             return HttpResponseRedirect(reverse("recipe-detail", args=[recipe_id]))
     # If this is a  GET (or any other method) create the default form

@@ -1,6 +1,6 @@
 import json
 
-from .services.recipe import ScrapedRecipe
+from .services.recipe import ScrapedRecipeModel
 
 
 # Serialize a Recipe instance to a dictionary
@@ -22,7 +22,7 @@ def serialize_recipe(recipe):
 # Deserialize a dictionary to a Recipe instance
 def deserialize_recipe(data):
     data = json.loads(data)
-    return ScrapedRecipe(
+    return ScrapedRecipeModel(
         url=data["url"],
         title=data["title"],
         ingredients=data["ingredients"],

@@ -8,24 +8,24 @@ from .scraper import (
 )
 
 
-def recipe(soup):
+def recipe():
     def title():
-        return scrape_title(soup)
+        return scrape_title()
 
     def ingredients():
-        return scrape_ingredients(soup)
+        return scrape_ingredients()
 
     def instructions():
-        return scrape_instructions(soup)
+        return scrape_instructions()
 
     def servings():
-        return scrape_servings(soup)
+        return scrape_servings()
 
     def preptime():
-        return scrape_preparation_time(soup)
+        return scrape_preparation_time()
 
     def cooktime():
-        return scrape_cook_time(soup)
+        return scrape_cook_time()
 
     recipe = {
         "title": title(),
