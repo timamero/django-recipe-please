@@ -14,7 +14,6 @@ def set_soup(url):
 
     src = response.content
 
-    # return BeautifulSoup(src, "lxml")
     global soup
     soup = BeautifulSoup(src, "lxml")
 
