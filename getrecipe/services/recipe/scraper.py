@@ -24,9 +24,7 @@ def set_soup_html(html):
     soup = BeautifulSoup(html, "lxml")
 
 
-# TODO: Use filter by elements in list_found_by_class
 def filter_by_class(element_types: List[str], *class_patterns: str):
-
     elements = []
     for pattern in class_patterns:
         elements.extend(soup.find_all(element_types, class_=re.compile(pattern, re.I)))
@@ -34,7 +32,7 @@ def filter_by_class(element_types: List[str], *class_patterns: str):
     return elements
 
 
-def list_found_by_class(pattern):
+def find_list_items(pattern: str):
     container = soup.find(["div", "ul", "ol"], class_=re.compile(pattern, re.I))
     if container is None:
         return None
@@ -71,7 +69,7 @@ def scrape_ingredients():
         return None
 
     pattern = r"ingredient|ingred"
-    list = list_found_by_class(pattern)
+    list = find_list_items(pattern)
     if list is None:
         return None
 
@@ -93,7 +91,7 @@ def scrape_instructions():
         return None
 
     pattern = r"instruction|direction|step"
-    list = list_found_by_class(pattern)
+    list = find_list_items(pattern)
     if list is None:
         return None
 
