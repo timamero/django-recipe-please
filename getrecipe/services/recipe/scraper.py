@@ -1,5 +1,6 @@
 import re
 import requests
+from unidecode import unidecode
 from bs4 import BeautifulSoup
 from typing import List
 
@@ -76,12 +77,12 @@ def scrape_ingredients():
         return None
 
     ingredient_list = []
-    for li in list:
-        single_ingredient = []
-        for txt in li.stripped_strings:
+    for element in list:
+        ingredient_item = []
+        for txt in element.stripped_strings:
             if txt.encode() != b"\xe2\x96\xa2":  # Don't include checkboxes
-                single_ingredient.append(" ".join(txt.split()))
-        ingredient_list.append(" ".join(single_ingredient))
+                ingredient_item.append(" ".join(unidecode(txt).split()))
+        ingredient_list.append(" ".join(ingredient_item))
 
     if len(ingredient_list) == 0:
         ingredient_list = None
