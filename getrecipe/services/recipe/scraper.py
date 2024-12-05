@@ -1,6 +1,7 @@
 import re
 import requests
 from bs4 import BeautifulSoup
+from typing import List
 
 
 def set_soup(url):
@@ -23,7 +24,8 @@ def set_soup_html(html):
     soup = BeautifulSoup(html, "lxml")
 
 
-def elements_filtered_by_class(element_types, class_patterns):
+# TODO: Use filter by elements in list_found_by_class
+def filter_by_class(element_types: List[str], *class_patterns: str):
 
     elements = []
     for pattern in class_patterns:
@@ -114,7 +116,7 @@ def scrape_preparation_time():
 
     pattern1 = r"prep"
     pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
-    elements = elements_filtered_by_class(["div", "span", "li"], [pattern1, pattern2])
+    elements = filter_by_class(["div", "span", "li"], pattern1, pattern2)
 
     for element in elements:
         has_digits = bool(re.search(r"\d", "".join(element.stripped_strings)))
@@ -142,9 +144,11 @@ def scrape_cook_time():
     pattern1 = r"cook.*time|time.*active"
     pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
     pattern3 = r"recipe-time"
-    elements = elements_filtered_by_class(
+    elements = filter_by_class(
         ["div", "span", "li"],
-        [pattern1, pattern2, pattern3],
+        pattern1,
+        pattern2,
+        pattern3,
     )
 
     for element in elements:
@@ -178,7 +182,7 @@ def scrape_servings():
 
     pattern1 = r"serving(s?)|yield|yields|serves"
     pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
-    elements = elements_filtered_by_class(["div", "span"], [pattern1, pattern2])
+    elements = filter_by_class(["div", "span"], pattern1, pattern2)
 
     for element in elements:
         match = re.search(
