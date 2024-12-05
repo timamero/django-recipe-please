@@ -33,22 +33,24 @@ def filter_by_class(element_types: List[str], *class_patterns: str):
 
 
 def find_list_items(pattern: str):
-    container = soup.find(["div", "ul", "ol"], class_=re.compile(pattern, re.I))
-    if container is None:
+    element = soup.find(["div", "ul", "ol"], class_=re.compile(pattern, re.I))
+    if element is None:
         return None
-    li_elements = container.select("li")
-    p_elements = container.select("p")
+
+    li_elements = element.select("li")
+    p_elements = element.select("p")
+
     while len(li_elements) == 0 and len(p_elements) == 0:
-        container = container.find_next(
+        element = element.find_next(
             ["div", "ul", "ol"],
             class_=re.compile(pattern, re.I),
             recursive=False,
         )
-        if container is None:
+        if element is None:
             continue
 
-        li_elements = container.select("li")
-        p_elements = container.select("p")
+        li_elements = element.select("li")
+        p_elements = element.select("p")
 
     if len(li_elements) == 0 and len(p_elements) == 0:
         return None
