@@ -21,9 +21,9 @@ class ScrapedRecipe:
         else:
             scraper.set_soup_html(html)
         self.url = url
-        self.title = scraper.scrape_title()
-        self.ingredients = scraper.scrape_ingredients()
-        self.instructions = scraper.scrape_instructions()
-        self.servings = scraper.scrape_servings()
-        self.prep_time = scraper.scrape_preparation_time()
-        self.cook_time = scraper.scrape_cook_time()
+        self.title = scraper.title()
+        self.ingredients = scraper.ingredients()
+        self.instructions = scraper.instructions()
+        self.servings = scraper.servings()
+        self.prep_time = scraper.preparation_time()
+        self.cook_time = scraper.cook_time()

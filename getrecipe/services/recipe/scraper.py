@@ -5,6 +5,10 @@ from bs4 import BeautifulSoup
 from typing import List
 
 
+# TODO: Remove redundancy in ingredients and instructions
+# TODO: Update spacing to improve readability
+
+
 def set_soup(url):
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
@@ -61,13 +65,13 @@ def find_list_items(pattern: str):
     return li_elements
 
 
-def scrape_title():
+def title():
     if soup is None:
         return None
     return soup.title.string
 
 
-def scrape_ingredients():
+def ingredients():
     if soup is None:
         return None
 
@@ -89,7 +93,7 @@ def scrape_ingredients():
     return ingredient_list
 
 
-def scrape_instructions():
+def instructions():
     if soup is None:
         return None
 
@@ -111,7 +115,7 @@ def scrape_instructions():
     return instruction_list
 
 
-def scrape_preparation_time():
+def preparation_time():
     if soup is None:
         return ""
 
@@ -138,7 +142,7 @@ def scrape_preparation_time():
         return None
 
 
-def scrape_cook_time():
+def cook_time():
     if soup is None:
         return ""
 
@@ -177,7 +181,7 @@ def scrape_cook_time():
     return None
 
 
-def scrape_servings():
+def servings():
     if soup is None:
         return ""
 
