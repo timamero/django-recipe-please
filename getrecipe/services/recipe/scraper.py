@@ -4,9 +4,8 @@ from unidecode import unidecode
 from bs4 import BeautifulSoup
 from typing import List
 
-
-# TODO: Remove redundancy in ingredients and instructions
-# TODO: Update spacing to improve readability
+# TODO: Reduce redundancy in preparation_time and cook_time
+# TODO: Create patterns file
 
 
 def set_soup(url):
@@ -29,6 +28,12 @@ def set_soup_html(html):
     soup = BeautifulSoup(html, "lxml")
 
 
+def title():
+    if soup is None:
+        return None
+    return soup.title.string
+
+
 def filter_by_class(element_types: List[str], *class_patterns: str):
     elements = []
     for pattern in class_patterns:
@@ -39,6 +44,7 @@ def filter_by_class(element_types: List[str], *class_patterns: str):
 
 def find_list_items(pattern: str):
     element = soup.find(["div", "ul", "ol"], class_=re.compile(pattern, re.I))
+
     if element is None:
         return None
 
@@ -51,6 +57,7 @@ def find_list_items(pattern: str):
             class_=re.compile(pattern, re.I),
             recursive=False,
         )
+
         if element is None:
             continue
 
@@ -62,13 +69,8 @@ def find_list_items(pattern: str):
 
     if len(li_elements) == 0:
         return p_elements
+
     return li_elements
-
-
-def title():
-    if soup is None:
-        return None
-    return soup.title.string
 
 
 def create_string_list(element_list):
@@ -95,6 +97,7 @@ def ingredients():
 
     if len(ingredient_list) == 0:
         ingredient_list = None
+
     return ingredient_list
 
 
