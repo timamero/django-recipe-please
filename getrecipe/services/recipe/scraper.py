@@ -71,6 +71,17 @@ def title():
     return soup.title.string
 
 
+def create_string_list(element_list):
+    string_list = []
+    for element in element_list:
+        item = []
+        for txt in element.stripped_strings:
+            if txt.encode() != b"\xe2\x96\xa2":  # Don't include checkboxes
+                item.append(" ".join(unidecode(txt).split()))
+        string_list.append(" ".join(item))
+    return string_list
+
+
 def ingredients():
     if soup is None:
         return None
@@ -80,13 +91,7 @@ def ingredients():
     if list is None:
         return None
 
-    ingredient_list = []
-    for element in list:
-        ingredient_item = []
-        for txt in element.stripped_strings:
-            if txt.encode() != b"\xe2\x96\xa2":  # Don't include checkboxes
-                ingredient_item.append(" ".join(unidecode(txt).split()))
-        ingredient_list.append(" ".join(ingredient_item))
+    ingredient_list = create_string_list(list)
 
     if len(ingredient_list) == 0:
         ingredient_list = None
@@ -102,12 +107,7 @@ def instructions():
     if list is None:
         return None
 
-    instruction_list = []
-    for item in list:
-        single_instruction = []
-        for txt in item.stripped_strings:
-            single_instruction.append(" ".join(txt.split()))
-        instruction_list.append(" ".join(single_instruction))
+    instruction_list = create_string_list(list)
 
     if len(instruction_list) == 0:
         instruction_list = None
