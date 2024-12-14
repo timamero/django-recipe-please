@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from typing import List
 
 # TODO: Reduce redundancy in preparation_time and cook_time
+# TODO: Update servings function so that it's easier to read
 # TODO: Create patterns file
 
 
@@ -118,6 +119,22 @@ def instructions():
     return instruction_list
 
 
+def get_formatted_time(text: str, pattern: str):
+    match = re.search(
+        pattern,
+        text,
+        re.I,
+    )
+    if match:
+        digit_pattern = r"\d\d?"
+        alpha_pattern = r"(min(utes)?)|(hour(s)?)"
+        # alpha_pattern = r"[a-zA-Z]+"
+        return "{0} {1}".format(
+            re.search(digit_pattern, match[0]).group(),
+            re.search(alpha_pattern, match[0]).group(),
+        )
+
+
 def preparation_time():
     if soup is None:
         return ""
@@ -125,23 +142,16 @@ def preparation_time():
     pattern1 = r"prep"
     pattern2 = r"recipe([s\-\_]{0,2})detail(s?)"
     elements = filter_by_class(["div", "span", "li"], pattern1, pattern2)
-
+    print("test!!!")
     for element in elements:
         has_digits = bool(re.search(r"\d", "".join(element.stripped_strings)))
         prep_elements = element.find_all(string=re.compile(r"prep", re.I))
         if has_digits and len(prep_elements) > 0:
-            match = re.search(
-                r"(\d{1,2})\s?((min(utes)?)|(hour(s)?))",
+            return get_formatted_time(
                 "".join(element.stripped_strings),
-                re.I,
+                r"(\d{1,2})\s?((min(utes)?)|(hour(s)?))",
             )
-            if match:
-                digit_pattern = r"\d\d?"
-                alpha_pattern = r"[a-zA-Z]+"
-                return "{0} {1}".format(
-                    re.search(digit_pattern, match[0]).group(),
-                    re.search(alpha_pattern, match[0]).group(),
-                )
+
         return None
 
 
@@ -169,18 +179,11 @@ def cook_time():
         )
 
         if has_digits and len(cook_elements) > 0 and string_length < string_length_max:
-            match = re.search(
-                r"(cook(ing|\s?time)?):?\s?(\d{1,2})\s?((min(utes)?)|(hour(s)?))",
+            return get_formatted_time(
                 "".join(element.stripped_strings),
-                re.I,
+                r"(cook(ing|\s?time)?):?\s?(\d{1,2})\s?((min(utes)?)|(hour(s)?))",
             )
-            if match:
-                digit_pattern = r"\d\d?"
-                alpha_pattern = r"(min(utes)?)|(hour(s)?)"
-                return "{0} {1}".format(
-                    re.search(digit_pattern, match[0]).group(),
-                    re.search(alpha_pattern, match[0]).group(),
-                )
+
     return None
 
 
