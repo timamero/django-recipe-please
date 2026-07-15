@@ -4,7 +4,7 @@
 
 Django web app that scrapes recipe data (title, ingredients, instructions, servings, prep/cook time) from any recipe website URL and displays it in a clean, ad-free format.
 
-[recipe-please-demo](https://github.com/user-attachments/assets/e2dbe44c-d5c7-4250-b646-d581269bc2ea)
+[recipe-please-demo.webm](https://github.com/user-attachments/assets/8caae149-6ba9-434c-866d-6032e182135a)
 
 <!-- [Screencast from 2026-07-15 10-50-25.webm](https://github.com/user-attachments/assets/e2dbe44c-d5c7-4250-b646-d581269bc2ea) -->
 
