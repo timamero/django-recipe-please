@@ -23,6 +23,10 @@ Built to practice web scraping with Beautiful Soup. Rather than writing a custom
 
 Django 5.1 · BeautifulSoup4 + lxml · Pydantic · Memcached · Gunicorn
 
+<!-- Lxml is a Python library that provides fast and feature-rich tools for processing XML and HTML documents -->
+<!-- Memcached is an open source memory-caching system -->
+<!-- Gunicorn is a Python HTTP Server -->
+
 ## Potential Improvements
 
 - **Reduce redundancy in scraping code** — `scrape_preparation_time`, `scrape_cook_time`, and `scrape_servings` share nearly identical logic (filter by class → check for digits → regex match). Could be consolidated into one generic function
