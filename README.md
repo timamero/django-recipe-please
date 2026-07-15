@@ -4,7 +4,7 @@
 
 Django web application that scrapes and displays recipe data from websites.
 
-[See a demo of the website here](https://recipeplease-v2-b82eced00232.herokuapp.com/)
+![Recipe Please Demo](./demos/recipe-please-demo.webm)
 
 I created this project to practice web scraping with Beautiful Soup. The code to scrape the recipe site is in getrecipe/funcs.py. It can still be improved but it works fine for most recipe sites.
 
